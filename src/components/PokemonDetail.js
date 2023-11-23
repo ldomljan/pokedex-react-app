@@ -7,9 +7,10 @@ const PokemonDetail = ({ match }) => {
 
   useEffect(() => {
     const fetchPokemonDetails = async () => {
-      const { params } = match;
+     const name = window.location.pathname.split("/").pop();
+    //  const { params } = match;
       try {
-        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${params.name}`);
+        const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
         setPokemonDetails(response.data);
       } catch (error) {
         console.error('Error fetching Pokémon details:', error);
@@ -26,7 +27,12 @@ const PokemonDetail = ({ match }) => {
   return (
     <div>
       <h2>{pokemonDetails.name}</h2>
-      
+      <p>
+        
+       Height: {pokemonDetails.height}
+       {pokemonDetails.PokemonDetail}
+
+      </p>
     </div>
   );
 };

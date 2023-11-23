@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import Pokedex from './components/Pokedex';
+import PokemonDetail from './components/PokemonDetail';
+import About from './components/About';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <h1>Pokemons</h1>
+ 
+        <Routes>
+          
+          <Route path="/pokedex" element={<Pokedex/>} />
+   
+          <Route path="/pokemon/:name" element={<PokemonDetail/>} />
+ 
+          <Route path="/about" element={<About/>} />
+            <Route path="/" element={ <Navigate to="/pokedex" />}/>
+        
+            <Route path="*" element={  <div>404 Not Found</div>}/>
+  
+         
+        </Routes>
+
+        
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
+
